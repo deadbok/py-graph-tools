@@ -1,0 +1,3 @@
+[submodule "py-puml-tools"]
+	path = py-puml-tools
+	url = https://github.com/deadbok/py-puml-tools
