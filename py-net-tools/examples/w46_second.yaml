@@ -1,0 +1,47 @@
+---
+name: "Second example"
+
+Client:
+  connections:
+    - USR
+  interfaces:
+    - eth0:
+        - "192.168.0.5"
+  type: "client-laptop"
+
+Server:
+  connections:
+    - SRV
+  interfaces:
+    - eth0:
+        - "192.168.1.2"
+  type: "server"
+
+SRV:
+  type: "network"
+  network: "192.168.1.0/24"
+
+USR:
+  type: "network"
+  network: "192.168.0.0/24"
+
+Router:
+  connections:
+    - USR:
+        - "ge-0/0/1"
+    - SRV:
+        - "ge-0/0/2"
+    - Internet:
+        - "ge-0/0/0"
+  interfaces:
+    - "ge-0/0/1":
+        - "192.168.0.1"
+    - "ge-0/0/0":
+        - "dhcp"
+    - "ge-0/0/2":
+        - "192.168.1.1"
+  type: "router"
+
+Internet:
+  name: "network"
+...

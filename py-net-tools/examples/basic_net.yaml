@@ -1,0 +1,42 @@
+---
+name: "Example network"
+
+client:
+  connections:
+    - Switch:
+        - "port 1"
+  interfaces:
+    - eth0:
+        - "192.168.0.5"
+  name: "Client"
+
+router:
+  connections:
+    - Switch:
+        - "port 0"
+    - Internet:
+        - "ge-0/0/1"
+  interfaces:
+    - ge-0/0/0:
+        - "192.168.0.1"
+    - ge-0/0/1:
+        - "dhcp"
+  name: "Router"
+
+server:
+  connections:
+    - Switch:
+        - "port 2"
+  interfaces:
+    - eth0:
+        - "192.168.0.2"
+  name: "Server"
+
+switch:
+  name: "Switch"
+  ports: 10
+
+wan:
+  name: "Internet"
+  ports: 1
+...

@@ -1,0 +1,80 @@
+---
+#2 routers, Internet, 3 subnets (USR+SRV+DMZ), a client and a 2 servers 
+name: "Second example"
+
+Client:
+  connections:
+    - USR
+  interfaces:
+    - eth0:
+        - "192.168.0.5"
+  type: "client-laptop"
+
+Server-DMZ:
+  connections:
+    - SRV
+  interfaces:
+    - eth0:
+        - "10.0.0.2"
+  type: "server"
+
+Server-SRV:
+  connections:
+    - SRV
+  interfaces:
+    - eth0:
+        - "192.168.1.2"
+  type: "server"
+
+R2R:
+  type: "network"
+  network: "1.0.1.0/24"
+
+DMZ:
+  type: "network"
+  network: "1.0.0.0/24"
+
+SRV:
+  type: "network"
+  network: "192.168.1.0/24"
+
+USR:
+  type: "network"
+  network: "192.168.0.0/24"
+
+ROUTER-INT:
+  connections:
+    - USR:
+        - "ge-0/0/0"
+    - SRV:
+        - "ge-0/0/1"
+    - R2R:
+        - "ge-0/0/2"
+  interfaces:
+    - "ge-0/0/0":
+        - "192.168.0.1"
+    - "ge-0/0/1":
+        - "192.168.1.1"
+    - "ge-0/0/2":
+        - "10.0.1.1"
+  type: "router"
+
+ROUTER-EXT:
+  connections:
+    - R2R:
+        - "ge-0/0/0"
+    - DMZ:
+        - "ge-0/0/1"
+    - Internet:
+        - "ge-0/0/2"
+  interfaces:
+    - "ge-0/0/0":
+        - "10.0.1.2"
+    - "ge-0/0/1":
+        - "10.0.0.1"
+    - "ge-0/0/2":
+        - "dhcp"
+  type: "router"
+Internet:
+  name: "network"
+...
