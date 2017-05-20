@@ -1,0 +1,81 @@
+@startuml
+
+@startuml
+skinparam monochrome true
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+scale 2
+
+namespace base {
+    class NetObjBase {
+        +__init__()
+        +__str__()
+    }
+
+    NetObjBase <-- dotgen.Device
+    NetObjBase <-- dotgen.Interface
+    NetObjBase <-- dotgen.Connection
+    NetObjBase <-- dotgen.Network
+
+}
+
+namespace dotgen {
+    class Device {
+        +__init__()
+        +__str__()
+    }
+
+    class Interface {
+        +__init__()
+        +__str__()
+    }
+
+    class Connection {
+        +__init__()
+        +__str__()
+    }
+
+    class Network {
+        +__init__()
+        +__str__()
+    }
+
+    class DotGenerator {
+        -devices
+        -interfaces
+        -connections
+        -networks
+
+        +__init__()
+        +addDevice()
+        +addInterfaces()
+        +addConnection()
+        +addNetwork()
+        +fromDict()
+        +__str__()
+    }
+
+    namespace devicerenderers {
+        class RenderBase {
+            +addImage()
+            +__str__()
+        }
+
+        class Router {
+            +name
+
+            +__str__()
+        }
+
+        RenderBase <-- Router
+    }
+
+    Device -- DotGenerator
+    Interface -- DotGenerator
+    Connection -- DotGenerator
+    Network -- DotGenerator
+}
+
+
+
+@enduml

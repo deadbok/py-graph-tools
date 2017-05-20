@@ -1,0 +1,35 @@
+@startuml
+
+@startuml
+skinparam monochrome true
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+scale 2
+
+!include autopuml/gen.netobjbase.puml
+!include autopuml/gen.dotgen.renderers.renderbase.puml
+!include autopuml/gen.dotgen.renderers.network.__init__.puml
+!include autopuml/gen.dotgen.renderers.device.switch.puml
+!include autopuml/gen.dotgen.renderers.device.server.puml
+!include autopuml/gen.dotgen.renderers.device.router.puml
+!include autopuml/gen.dotgen.renderers.device.client.puml
+!include autopuml/gen.dotgen.renderers.device.__init__.puml
+!include autopuml/gen.dotgen.renderers.connection.__init__.puml
+!include autopuml/gen.dotgen.exceptions.puml
+!include autopuml/gen.dotgen.dotgenerator.puml
+
+gen.NetObjBase <- gen.dotgen.renderers.device.Device
+gen.NetObjBase <- gen.dotgen.renderers.connection.Connection
+gen.NetObjBase <- gen.dotgen.renderers.network.Network
+
+gen.dotgen.renderers.RenderBase <-- gen.dotgen.renderers.device.Client
+gen.dotgen.renderers.RenderBase <-- gen.dotgen.renderers.device.Switch
+gen.dotgen.renderers.RenderBase <-- gen.dotgen.renderers.device.Router
+gen.dotgen.renderers.RenderBase <-- gen.dotgen.renderers.device.Server
+
+gen.dotgen.renderers.device.Device "1" -- "0 " gen.dotgen.renderers.device.Client
+gen.dotgen.renderers.device.Device "1" -- "0 " gen.dotgen.renderers.device.Switch
+gen.dotgen.renderers.device.Device "1 " -- "0 " gen.dotgen.renderers.device.Router
+gen.dotgen.renderers.device.Device "1" -- "0 " gen.dotgen.renderers.device.Server
+
+@enduml
