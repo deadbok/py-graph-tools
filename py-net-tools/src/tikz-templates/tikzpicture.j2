@@ -1,0 +1,14 @@
+{% extends base.j2 %}
+{% block tikzpicture %}
+\begin{tikzpicture}[
+    start chain=going right,
+    diagram item/.style={
+        on chain,
+        join
+    }
+]
+{% for node in nodes %}
+{{ user.template|e }}
+{% endfor %}
+\end{tikzpicture}
+{% endblock %}
