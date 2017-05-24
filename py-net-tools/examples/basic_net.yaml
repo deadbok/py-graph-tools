@@ -1,11 +1,9 @@
 ---
 name: "Example network"
+author: "Martin Grønholdt"
 
-Client2:
-
-networks:
-  LAN: "192.168.0.0/24"
-  Internet: "0.0.0.0/0"
+LAN: "192.168.0.0/24"
+Internet: "0.0.0.0/0"
 
 client:
   interfaces:

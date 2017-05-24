@@ -1,0 +1,13 @@
+graph "Example network" {
+  "Server" [shape=rectangle];
+  "Client" [shape=rectangle];
+  "Router" [image="./images/router.svg", shape=circle, imagescale=true, color=transparent, labelloc=b];
+  "LAN" [image="./images/network.svg", shape=circle, imagescale=true, color=transparent, labelloc=b];
+  "Internet" [image="./images/network.svg", shape=circle, imagescale=true, color=transparent, labelloc=b];
+
+  Server -- LAN
+  Client -- LAN
+
+  LAN -- Router
+  Router -- Internet
+}
