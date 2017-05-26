@@ -1,0 +1,37 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{chains}
+\usepackage{epstopdf}
+\graphicspath{ {cisco-icons-bw-eps/} }
+\begin{document}
+\begin{tikzpicture}
+
+\node [
+    label=below:Router,
+    label={[xshift=3.5em, yshift=0.5em]center:\tiny ge-0/0/0}
+] (Router) at (0,-1.5) {\includegraphics{router}};
+
+\node [
+    label={[xshift=-3em, yshift=-0.5em]center:\tiny 0},
+    label=below:Switch,
+    label={[xshift=3em, yshift=1.5em]center:\tiny 1},
+    label={[xshift=3em, yshift=-0.5em]center:\tiny 2}
+] (Switch) at (4,-1.5) {\includegraphics{workgroup_switch}};
+
+\node [
+    label=below:Client,
+    label={[xshift=-3em, yshift=-2em]center:\tiny eth0}
+] (Client) at (8,0) {\includegraphics{pc}};
+
+\node [
+    label=below:Server,
+    label={[xshift=-3em, yshift=0em]center:\tiny eth0}
+] (Server) at (8,-3) {\includegraphics{file_server}};
+
+\draw[-,draw] (Router) to (Switch);
+\draw[-,draw] (Switch) to (Client);
+\draw[-,draw] (Switch) to (Server);
+
+\end{tikzpicture}
+\end{document}

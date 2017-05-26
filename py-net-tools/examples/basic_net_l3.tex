@@ -1,0 +1,45 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{chains}
+\usepackage{epstopdf}
+\graphicspath{ {cisco-icons-bw-eps/} }
+\begin{document}
+\begin{tikzpicture}
+\node [
+    label=center:Internet
+] (Internet) at (0,-2) {\includegraphics{cloud}};
+
+\node [
+    label={[xshift=-3.5
+    em, yshift=0.5em]center:\tiny DHCP},
+    label={below:Router},
+    label={[xshift=3em, yshift=0.5em]center:\tiny .1},
+] (Router) at (4,-2) {\includegraphics{router}};
+
+\node [
+    label={[align=center]center:LAN\\\tiny 192.168.0.0/24}
+] (LAN) at (8,-2) {\includegraphics{cloud}};
+
+\node [
+    label=below:Switch
+] (Switch) at (12,-2) {\includegraphics{workgroup_switch}};
+
+\node [
+    label=below:Client,
+    label={[xshift=-3em, ]center:\tiny DHCP},
+] (Client) at (16,0) {\includegraphics{pc}};
+
+\node [
+    label=below:Server,
+    label={[xshift=-2em]center:\tiny .2},
+] (Server) at (16,-4) {\includegraphics{file_server}};
+
+\draw[-,draw] (Internet) to (Router);
+\draw[-,draw] (Router) to (LAN);
+\draw[-,draw] (LAN) to (Switch);
+\draw[-,draw] (Switch) to (Client);
+\draw[-,draw] (Switch) to (Server);
+
+\end{tikzpicture}
+\end{document}

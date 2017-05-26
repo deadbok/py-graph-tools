@@ -2,18 +2,18 @@
 name: "Example network"
 author: "Martin Grønholdt"
 
-LAN: "192.168.0.0/24"
-Internet: "0.0.0.0/0"
+networks:
+  LAN: "192.168.0.0/24"
+  Internet: "0.0.0.0/0"
 
-client:
+Client:
   interfaces:
     - eth0:
-      ip: "192.168.0.5"
-      connection:
-        Switch: "1"
-  name: "Client"
+        ip: "192.168.0.5"
+        connection:
+          Switch: 1
 
-router:
+Router:
   interfaces:
     - ge-0/0/0:
       ip: "192.168.0.1"
@@ -23,17 +23,15 @@ router:
       ip: "dhcp"
       connection:
         Internet: 0
-  name: "Router"
 
-server:
+Server:
   interfaces:
     - eth0:
       ip: "192.168.0.2"
       connection:
         Switch: 2
-  name: "Server"
 
-switch:
-  name: "Switch"
+Switch:
   ports: 10
+
 ...
